@@ -1,5 +1,6 @@
 package com.naze.vault.ui.components
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
@@ -57,6 +58,7 @@ fun iconFor(kind: VaultFileKind): ImageVector = when (kind) {
 }
 
 @Composable
+@OptIn(ExperimentalFoundationApi::class)
 fun NazeFileListItem(
     node: VaultNode,
     selected: Boolean,
