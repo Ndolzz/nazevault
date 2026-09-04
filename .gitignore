@@ -1,0 +1,15 @@
+*.iml
+.gradle/
+/local.properties
+.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+*.apk
+*.aab
+
+# Keep the wrapper jar out only until you generate it locally/in CI once —
+# after that, remove this line so it's committed for reproducible builds.
+gradle/wrapper/gradle-wrapper.jar
