@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.NazeVault" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="android:statusBarColor">@color/naze_black</item>
-        <item name="android:navigationBarColor">@color/naze_black</item>
-        <item name="android:windowBackground">@color/naze_black</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="23">false</item>
+    <style name="Theme.NazeVault" parent="Theme.Material3.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/naze_light_background</item>
+        <item name="android:navigationBarColor">@color/naze_light_background</item>
+        <item name="android:windowBackground">@color/naze_light_background</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
     </style>
 </resources>

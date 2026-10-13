@@ -5,6 +5,7 @@ import com.naze.vault.data.FileRepository
 import com.naze.vault.data.IndexStore
 import com.naze.vault.security.SecretsRepository
 import com.naze.vault.security.VaultLockManager
+import com.naze.vault.ui.theme.NazeThemePrefs
 
 class NazeVaultApplication : Application() {
     override fun onCreate() {
@@ -14,5 +15,6 @@ class NazeVaultApplication : Application() {
         IndexStore.init(this)
         SecretsRepository.init(this)
         VaultLockManager.init(this)
+        NazeThemePrefs.init(this)
     }
 }
