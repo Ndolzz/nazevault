@@ -130,9 +130,23 @@ object FileRepository {
 
     fun writeText(file: File, content: String): Result<Unit> = runCatching { file.writeText(content) }
 
+    /**
+     * Best-effort text preview of a file: returns the decoded UTF-8 content when
+     * the file is small enough and does not look binary, or null otherwise.
+     * Lets the viewer inspect unknown file types instead of only showing the name.
+     */
+    fun readTextPreview(file: File, maxBytes: Long = 512L * 1024): String? {
+        if (file.isDirectory) return null
+        if (file.length() > maxBytes) return null
+        return runCatching {
+            val bytes = file.readBytes()
+            if (bytes.take(4096).any { it == 0.toByte() }) null else String(bytes, Charsets.UTF_8)
+        }.getOrNull()
+    }
+
     /** Imports a file the user picked via the system picker (Storage Access Framework). */
     fun importFromUri(context: Context, uri: Uri, destDir: File): Result<File> = runCatching {
-        val displayName = queryDisplayName(context, uri) ?: "imported_${System.currentTimeMillis()}"
+        val displayName = queryDisplayName(context, uri) ?: "imported_" + System.currentTimeMillis()
         val safeName = FileUtils.uniqueName(destDir, displayName)
         val target = File(destDir, safeName)
         context.contentResolver.openInputStream(uri)?.use { input ->
